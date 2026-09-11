@@ -1,0 +1,327 @@
+/* ==========================================================================
+   1. ГЛОБАЛЬНЫЕ СТИЛИ И СБРОСЫ
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(circle at 50% 50%, #22252a 0%, #111315 100%);
+    color: #e0e0e0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
+.screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 100px 0 60px 0;
+    width: 100%;
+}
+
+.section-header {
+    margin-bottom: 45px;
+    width: 100%;
+}
+
+.section-header h2 {
+    font-size: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.section-header .line {
+    width: 60px;
+    height: 4px;
+    background-color: #ffffff;
+    margin-top: 12px;
+}
+
+/* ==========================================================================
+   2. НАВИГАЦИОННАЯ ПАНЕЛЬ (ОСТРОВ)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 66px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 33px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-scrolled {
+    top: 12px;
+    width: 85%;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon { font-size: 20px; color: #ffffff; }
+.logo-text { font-weight: 800; letter-spacing: 2px; color: #ffffff; font-size: 16px; }
+.logo-rf { color: #6c727e; font-weight: 400; font-size: 13px; border-left: 1px solid #444; padding-left: 6px; }
+
+.nav-links { display: flex; list-style: none; gap: 30px; }
+.nav-links a { color: #a0a5b0; text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: #ffffff; }
+
+.nav-actions { display: flex; align-items: center; gap: 15px; }
+.nav-btn { background: transparent; border: 1px solid #ffffff; color: #ffffff; padding: 8px 22px; text-transform: uppercase; font-size: 11px; font-weight: 600; letter-spacing: 1px; cursor: pointer; border-radius: 20px; transition: all 0.3s ease; }
+.nav-btn:hover { background: #ffffff; color: #111315; }
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 22px;
+    height: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+}
+.menu-toggle span { width: 100%; height: 2px; background-color: #ffffff; transition: all 0.3s ease; }
+
+/* ==========================================================================
+   3. ЭКРАН 1: ГЛАВНЫЙ ЭКРАН (HERO)
+   ========================================================================== */
+.section-hero {
+    height: 100vh;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(12, 13, 15, 0.85) 0%, rgba(17, 19, 21, 0.7) 50%, rgba(12, 13, 15, 0.9) 100%);
+    z-index: 2;
+}
+
+.hero-center-wrapper {
+    width: 100%;
+    z-index: 3;
+    padding-top: 40px;
+}
+
+/* Жесткое ограничение заголовка для предотвращения изломов на телефонах */
+.section-hero h1 {
+    font-size: min(52px, 7.5vw) !important;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.accent-text { color: #b0b5c0; }
+.lead-text { font-size: 17px; max-width: 620px; color: #a0a5b0; margin-bottom: 35px; }
+
+.btn { display: inline-block; padding: 14px 32px; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; text-decoration: none; transition: all 0.3s ease; }
+.btn-primary { background-color: #ffffff; color: #111315; }
+.btn-primary:hover { background-color: #e0e0e0; }
+.btn-secondary { background-color: rgba(255, 255, 255, 0.05); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); margin-left: 15px; }
+.btn-secondary:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+.scroll-down { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #555; z-index: 3; }
+/* ==========================================================================
+   4. ЭКРАН 2: О КОМПАНИИ (КОЛЛАЖ ФОТО)
+   ========================================================================== */
+.section-about { background: #16181b; }
+.about-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; align-items: center; }
+.about-text h3 { font-size: 24px; color: #ffffff; margin-bottom: 18px; font-weight: 700; }
+.about-text p { color: #a0a5b0; font-size: 15px; }
+
+.about-gallery-shutter {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 150px);
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #0c0d0f;
+    border: 4px solid #0c0d0f;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-item { position: relative; overflow: hidden; width: 100%; height: 100%; border-right: 4px solid #0c0d0f; border-bottom: 4px solid #0c0d0f; }
+.gallery-item:nth-child(3n) { border-right: none; }
+.gallery-item:nth-child(n+4) { border-bottom: none; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.gallery-item:hover img { transform: scale(1.05); }
+
+/* ==========================================================================
+   5. ЭКРАН 3: УСЛУГИ (БЕЛЫЕ КАРТОЧКИ)
+   ========================================================================== */
+.section-services { background: #111315; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.service-card {
+    background: #16181b; padding: 45px 30px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex; flex-direction: column; align-items: flex-start; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.service-icon {
+    font-size: 22px; font-weight: 700; color: #ffffff; margin-bottom: 20px; background: rgba(255, 255, 255, 0.05);
+    width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.service-card h3 { font-size: 20px; color: #ffffff; margin-bottom: 12px; font-weight: 700; }
+.service-card p { font-size: 14px; color: #8a8d93; }
+
+.service-card:hover { background: #ffffff; transform: translateY(-6px); border-color: #ffffff; box-shadow: 0 20px 40px rgba(255, 255, 255, 0.05); }
+.service-card:hover h3 { color: #111315; }
+.service-card:hover p { color: #2c3035; }
+.service-card:hover .service-icon { background: #111315; color: #ffffff; border-color: #111315; }
+
+/* ==========================================================================
+   6. ЭКРАН 4: КОНТАКТЫ
+   ========================================================================== */
+.section-contacts { background: #0c0d0f; justify-content: space-between; }
+.contacts-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; width: 100%; }
+.contact-info h3, .contact-form h3 { font-size: 22px; color: #ffffff; margin-bottom: 20px; }
+.contact-info p { margin-bottom: 12px; color: #a0a5b0; font-size: 15px; }
+.contact-info strong { color: #ffffff; }
+.work-hours { margin-top: 25px; border-top: 1px solid #222; padding-top: 15px; font-size: 14px; color: #6c727e; }
+
+.contact-form .form-group { margin-bottom: 16px; }
+.contact-form input, .contact-form textarea {
+    width: 100%; padding: 14px; background: #16181b; border: 1px solid #2d3138; color: #ffffff; font-family: 'Montserrat', sans-serif; outline: none; border-radius: 6px; transition: border-color 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus { border-color: #ffffff; }
+.btn-block { width: 100%; text-align: center; border-radius: 6px; cursor: pointer; }
+.main-footer { width: 100%; text-align: center; padding: 20px 0; border-top: 1px solid #16181b; font-size: 11px; color: #444; margin-top: 40px; }
+
+/* Вспомогательные анимации */
+.fade-in { opacity: 0; transform: translateY(15px); animation: fadeInUp 0.8s forwards; }
+.hero-content h1 { animation-delay: 0.1s; }
+.hero-content p { animation-delay: 0.25s; }
+.hero-content .hero-buttons { animation-delay: 0.4s; }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+/* ==========================================================================
+   7. МЕДИА-ЗАПРОСЫ (МОБИЛЬНАЯ ВЕРСТКА)
+   ========================================================================== */
+@media (max-width: 991px) {
+    .about-grid, .contacts-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+@media (max-width: 768px) {
+    .screen { padding: 80px 0 40px 0; }
+    .section-header { margin-bottom: 25px; }
+    .section-header h2 { font-size: 24px; }
+    
+    /* Мобильный компактный остров */
+    .navbar { top: 10px !important; width: 92% !important; height: 54px !important; border-radius: 14px !important; }
+    .nav-container { padding: 0 16px !important; }
+    .logo-rf { display: none !important; }
+    .menu-toggle { display: flex !important; }
+    
+    /* Шторка мобильного меню */
+    .nav-menu-wrapper {
+        position: fixed !important; top: -100vh !important; left: 0 !important; width: 100vw !important; height: 100vh !important;
+        background-color: rgba(12, 13, 15, 0.98) !important; backdrop-filter: blur(20px) !important; -webkit-backdrop-filter: blur(20px) !important;
+        display: flex !important; align-items: center !important; justify-content: center !important; transition: top 0.4s ease !important; z-index: 1500 !important;
+    }
+    .nav-menu-wrapper.active { top: 0 !important; }
+    .nav-menu-wrapper .nav-links { flex-direction: column !important; align-items: center !important; gap: 30px !important; display: flex !important; }
+    .nav-menu-wrapper .nav-links a { font-size: 20px !important; font-weight: 600 !important; }
+
+    /* Принудительное уменьшение шрифта для читаемости на смартфонах */
+    .section-hero h1 { 
+        font-size: 22px !important; 
+        line-height: 1.3 !important; 
+        margin-bottom: 15px !important;
+    }
+    .lead-text { font-size: 14px !important; margin-bottom: 25px !important; width: 100% !important; max-width: 100% !important; }
+    
+    /* Кнопки встают друг под друга */
+    .hero-buttons { display: flex !important; flex-direction: column !important; gap: 10px !important; width: 100% !important; }
+    .hero-buttons .btn { width: 100% !important; text-align: center !important; margin-left: 0 !important; padding: 14px !important; border-radius: 6px !important; }
+    .scroll-down { display: none !important; }
+
+    /* Корректировка сетки 6 фото под мобильный экран */
+    .about-text h3 { font-size: 19px; }
+    .about-gallery-shutter { grid-template-columns: repeat(3, 1fr) !important; grid-template-rows: repeat(2, 95px) !important; height: 190px !important; border: 3px solid #0c0d0f !important; }
+    .gallery-item { border-right: 3px solid #0c0d0f !important; border-bottom: 3px solid #0c0d0f !important; }
+
+    /* Услуги вертикально */
+    .services-grid { grid-template-columns: 1fr !important; gap: 15px !important; }
+    .service-card { padding: 30px 20px !important; width: 100% !important; }
+}
+
+@media (max-width: 480px) {
+    /* Экстремально маленькие экраны */
+    .section-hero h1 { font-size: 19px !important; }
+    .nav-btn { display: none !important; } 
+    
+    /* Сетка фото 2х3, чтобы картинки не сжимались в узкие полоски */
+    .about-gallery-shutter { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: repeat(3, 90px) !important; height: 270px !important; }
+    .gallery-item:nth-child(3n) { border-right: 3px solid #0c0d0f !important; }
+    .gallery-item:nth-child(2n) { border-right: none !important; }
+    .gallery-item:nth-child(n+4) { border-bottom: 3px solid #0c0d0f !important; }
+    .gallery-item:nth-child(n+5) { border-bottom: none !important; }
+}
+
+/* Анимация иконки бургера */
+.menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
